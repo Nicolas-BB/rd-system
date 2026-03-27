@@ -1,0 +1,9 @@
+# Pastas que não queremos versionar
+node_modules/
+.vscode/
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de lock (opcional, dependendo do time)
+package-lock.json
