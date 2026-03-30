@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Button } from './Buttons'
+import { Button } from './Button'
 import styles from '@/src/styles/components/sideBar.module.css'
 
 export default function SideBar() {

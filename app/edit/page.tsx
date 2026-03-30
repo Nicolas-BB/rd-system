@@ -4,11 +4,12 @@ import { pgAccount } from "@/src/types/business"
 import { useEffect, useState } from "react"
 import { Button } from "../components/Button"
 import styles from '@/src/styles/pages/dashboard.module.css'
-import Table from "../components/Table"
+import EditTable from "../components/EditTable"
 
 export default function Dashboard() {
     const [businessList, setBusinessList] = useState<pgAccount[]>([])
     const [loading, setLoading] = useState<boolean>(false)
+    const [newRows, setNewRows] = useState<pgAccount[]>([])
     const sortedList: pgAccount[] = [...businessList].sort((a, b) => (
         a.name.localeCompare(b.name)
     ))
@@ -19,21 +20,13 @@ export default function Dashboard() {
         setBusinessList(data)
     }
 
+    async function upsertAccounts() {
+        await fetch('/api/upsert-accounts')
+    }
+
     useEffect(() => {
         getBalances()
     }, [])
-
-    async function updateBalances() {
-        try {
-            setLoading(true)
-
-            await fetch('/api/sync-balances')
-            await getBalances()
-        }
-        finally {
-            setLoading(false)
-        }
-    }
 
     return (
         <main className={styles.main}>
@@ -44,9 +37,10 @@ export default function Dashboard() {
 
             <section className={styles.tableSection}>
                 <div className={styles.tableContainer}>
-                    <Table data={sortedList}></Table>
+                    <EditTable data={sortedList}></EditTable>
                 </div>
-                <Button variant="primary" onClick={updateBalances} disabled={loading}>{loading ? 'Atualizando...' : 'Atualizar'}</Button>
+
+                <Button variant="primary" onClick={upsertAccounts}>Salvar</Button>
             </section>
         </main>
     )
