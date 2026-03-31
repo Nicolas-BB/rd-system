@@ -13,12 +13,13 @@
 .table thead {
     position: sticky;
     top: 0;
-    background-color: var(--foreground);
+    background-color: var(--neutral);
 }
 
 .table th {
     font: var(--font-h3);
-    color: var(--text-title-dark);
+    color: var(--text-caption-light);
+    text-transform: uppercase;
 }
 
 .table td {

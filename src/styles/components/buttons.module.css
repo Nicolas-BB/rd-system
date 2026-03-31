@@ -5,7 +5,7 @@
     height: fit-content;
     font: var(--font-button);
     color: var(--text-title-dark);
-    background-color: var(--foreground);
+    background: linear-gradient(to right, hsl(217, 100%, 30%), var(--primary));
     padding: 16px;
     text-align: center;
     border-radius: 8px;
@@ -13,7 +13,7 @@
 }
 
 .primary:hover {
-    background-color: #2a7cff;
+    background: linear-gradient(to right, red, black);
 }
 
 .primary:active {
