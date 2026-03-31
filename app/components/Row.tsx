@@ -1,7 +1,7 @@
 import { pgAccount } from '@/src/types/business'
 
 export default function Row({ data }: { data: pgAccount }) {
-    const brl = new Intl.NumberFormat('pt-BR', {
+    const balanceBrl = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'
     }).format(data.balance)
@@ -15,14 +15,19 @@ export default function Row({ data }: { data: pgAccount }) {
         second: '2-digit'
     })
 
+    const minimumBrl = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(data.minimum)
+
     const status = data.balance >= data.minimum ? 'Ok' : 'Atenção'
 
     return (
         <tr>
             <td><p>{data.id}</p></td>
             <td><p>{data.name}</p></td>
-            <td><p>{data.minimum ?? '-'}</p></td>
-            <td><p>{brl}</p></td>
+            <td><p>{minimumBrl ?? '-'}</p></td>
+            <td><p>{balanceBrl}</p></td>
             <td><p>{status}</p></td>
             <td><p>{date}</p></td>
             <td><p>{data.type ?? '-'}</p></td>
