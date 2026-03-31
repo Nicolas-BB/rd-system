@@ -55,7 +55,7 @@ export type AccountInfo = {
     balance: number
 }
 
-export type pgAccount = {
+export type PgAccount = {
     id: string,
     name: string,
     minimum: number | null,
@@ -64,4 +64,10 @@ export type pgAccount = {
     updated: string,
     type: string | null,
     show: boolean
+}
+
+export type BmLead = {
+    id: string,
+    bm: string,
+    total: number,
 }

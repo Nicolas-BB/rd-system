@@ -1,7 +1,7 @@
-import { pgAccount } from '@/src/types/business'
+import { PgAccount } from '@/src/types/business'
 import { useState } from 'react'
 
-export default function Row({ data, onChange }: { data: pgAccount, onChange: (updated: pgAccount) => void }) {
+export default function Row({ data, onChange }: { data: PgAccount, onChange: (updated: PgAccount) => void }) {
     const [minimum, setMinimum] = useState<number | ''>(data.minimum ?? '')
     const [type, setType] = useState<string>(data.type ?? '')
     const [show, setShow] = useState<boolean>(data.show ?? true)
@@ -18,7 +18,7 @@ export default function Row({ data, onChange }: { data: pgAccount, onChange: (up
 
     const handleShowChange = (value: boolean) => {
         setShow(value)
-        onChange({ ...data, minimum: minimum === '' ? null : minimum, type, show: value }) 
+        onChange({ ...data, minimum: minimum === '' ? null : minimum, type, show: value })
     }
 
     return (
@@ -48,12 +48,12 @@ export default function Row({ data, onChange }: { data: pgAccount, onChange: (up
                 </select>
             </td>
             <td className="px-6 py-5 text-center">
-                <input 
-                    type="checkbox" 
-                    name="show" 
-                    id={`show-${data.id}`} 
-                    checked={show} 
-                    onChange={(e) => handleShowChange(e.target.checked)} 
+                <input
+                    type="checkbox"
+                    name="show"
+                    id={`show-${data.id}`}
+                    checked={show}
+                    onChange={(e) => handleShowChange(e.target.checked)}
                     className="w-5 h-5 rounded border-outline-variant/30 accent-primary cursor-pointer"
                 />
             </td>

@@ -1,7 +1,7 @@
-import { pgAccount } from "@/src/types/business";
+import { PgAccount } from "@/src/types/business";
 import Row from "./Row";
 
-export default function Table({ data }: { data: pgAccount[] }) {
+export default function Table({ data }: { data: PgAccount[] }) {
     return (
         <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
