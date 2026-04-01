@@ -1,14 +1,14 @@
 'use client'
 
-import { pgAccount } from "@/src/types/business"
+import { PgAccount } from "@/src/types/business"
 import { useEffect, useState } from "react"
-import { Button } from "../components/Button"
-import EditTable from "../components/EditTable"
+import { Button } from "../../components/Button"
+import EditTable from "../../components/EditTable"
 
 export default function Dashboard() {
-    const [businessList, setBusinessList] = useState<pgAccount[]>([])
+    const [businessList, setBusinessList] = useState<PgAccount[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const sortedList: pgAccount[] = [...businessList].sort((a, b) => (
+    const sortedList: PgAccount[] = [...businessList].sort((a, b) => (
         a.name.localeCompare(b.name)
     ))
 

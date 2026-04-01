@@ -1,6 +1,6 @@
-import { pgAccount } from '@/src/types/business'
+import { PgAccount } from '@/src/types/business'
 
-export default function Row({ data }: { data: pgAccount }) {
+export default function Row({ data }: { data: PgAccount }) {
     const balanceBrl = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'

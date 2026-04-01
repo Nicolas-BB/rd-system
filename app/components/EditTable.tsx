@@ -1,8 +1,8 @@
-import { pgAccount } from "@/src/types/business";
+import { PgAccount } from "@/src/types/business";
 import EditRow from "./EditRow";
 
-export default function EditTable({ data, onChange }: { data: pgAccount[], onChange: (updated: pgAccount[]) => void }) {
-    const handleRowChange = (updatedRow: pgAccount) => {
+export default function EditTable({ data, onChange }: { data: PgAccount[], onChange: (updated: PgAccount[]) => void }) {
+    const handleRowChange = (updatedRow: PgAccount) => {
         const newData = data.map(d => d.id === updatedRow.id ? updatedRow : d)
         onChange(newData)
     }

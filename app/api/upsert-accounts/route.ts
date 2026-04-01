@@ -1,9 +1,9 @@
 import { pool } from "@/src/lib/db"
 import { upsertAccounts } from "@/src/repositories/upsertAccounts"
-import { pgAccount } from "@/src/types/business"
+import { PgAccount } from "@/src/types/business"
 
 export async function POST(req: Request) {
-    const accounts: pgAccount[] = await req.json()
+    const accounts: PgAccount[] = await req.json()
 
     try {
         for (const account of accounts) {
