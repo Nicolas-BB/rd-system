@@ -8,6 +8,7 @@ export async function insertLeads(data: BmLead) {
     await pool.query(`
         INSERT INTO meta.leads (id, bm, total, date)
         VALUES ($1, $2, $3, $4)
+        ON CONFLICT (id, date) DO NOTHING;
         `, [data.id, data.bm, data.total, date]
     )
 }
