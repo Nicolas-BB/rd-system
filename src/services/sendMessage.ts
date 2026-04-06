@@ -1,6 +1,5 @@
 import { dbBusinessMessaging } from '@/src/types/evolution';
 import { sumLeadsByPeriod } from '@/src/repositories/sumLeadsByPeriod';
-import { NextResponse } from "next/server";
 
 export async function sendMessage(data: dbBusinessMessaging, initialLeads: number) {
     if (!data.active || !data.phone || data.weekdays.length === 0 || !data.message || !data.message.includes('{{leads}}')) {
