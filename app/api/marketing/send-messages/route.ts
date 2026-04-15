@@ -1,27 +1,27 @@
 import { listRdStationLeads } from "@/src/repositories/listRdStationLeads";
-import { formatRdStationMessage } from "@/src/services/formatRdStationMessage";
+import { getRdStationMessage } from "@/src/services/getRdStationMessage";
 import { sendMessage } from "@/src/services/sendMessage";
 import { DbLeadRes } from "@/src/types/rdStation";
 import { NextResponse } from "next/server"
 
 export async function GET(req: Request) {
-    const now = new Date()
-    const day = now.getDate()
-    const month = now.getMonth()
+    const eventDate = new Date(2026, 5, 7)
+    const today = new Date()
 
-    if (day !== 14 || month !== 3) return NextResponse.json({ success: false, error: "Hoje não é 14 de abril" });
+    const diff = eventDate.getTime() - today.getTime()
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
 
-    const { data.message: message }: string = await formatRdStationMessage(day)
+    if (![7, 4, 1, 0, -1, -3, -4, -5].includes(days)) return NextResponse.json({ success: false, error: 'Não é o dia de envio' })
 
-    const leads: DbLeadRes[] = await listRdStationLeads()
+    const message = await getRdStationMessage(days)
+
+    const leads = await listRdStationLeads()
+
+    if (!leads) return NextResponse.json({ success: false, error: 'Erro ao buscar leads' })
 
     for (const lead of leads) {
-        const dataToSend = {
-            phone: lead.phone,
-            message: message
-        }
-        sendMessage(dataToSend)
+        await sendMessage(lead.phone, message)
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true })
 }
