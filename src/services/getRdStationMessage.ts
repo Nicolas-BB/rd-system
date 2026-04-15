@@ -1,14 +1,17 @@
-export async function getRdStationMessage(days: number): Promise<string> {
+export async function getRdStationMessage(key: string): Promise<string> {
     const messages: Record<string, string> = {
-        '7': 'Faltam 7 dias',
-        '4': 'Faltam 4 dias',
-        '1': 'Faltam 1 dia',
-        '0': 'Hoje',
-        '-1': 'Ontem',
-        '-3': '3 dias atrás',
-        '-4': '4 dias atrás',
-        '-5': '5 dias atrás'
+        '7/9': 'lipedema_sete_dias',
+        '4/9': 'lipedema_quatro_dias',
+        '1/9': 'lipedema_um_dia',
+        '0/9': 'lipedema_dia',
+        '0/20': 'lipedema_ao_vivo',
+        '-1/9': 'lipedema_replay1',
+        '-1/18': 'lipedema_replay2',
+        '-3/9': 'lipedema_melhores_momentos1',
+        '-4/9': 'lipedema_melhores_momentos2',
+        '-5/9': 'lipedema_encerra_hoje',
+        '-5/19': 'lipedema_ultima_chamada'
     }
 
-    return messages[days.toString()]
+    return messages[key] || 'Mensagem não encontrada'
 }

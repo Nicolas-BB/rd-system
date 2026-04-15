@@ -1,12 +1,13 @@
-export async function sendMessage(phone: string, message: string) {
+export async function sendMessageEvolutionAPI(phone: string, message: string) {
     const url: string = 'https://baseservidor-evolution-api.kwlyqm.easypanel.host/message/sendText/RD';
+    const token: string = process.env.EVOLUTION_API_KEY || ''
 
     try {
         const res = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "apikey": `${process.env.EVOLUTION_API_KEY}`
+                "apikey": `${token}`
             },
             body: JSON.stringify({
                 "number": `${phone}`,

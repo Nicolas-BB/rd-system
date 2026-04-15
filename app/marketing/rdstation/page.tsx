@@ -30,8 +30,6 @@ export default function RdStation() {
     const getLeadsList = useCallback(async () => {
         try {
             setLoading(true)
-            const params = new URLSearchParams()
-            // if (leadFilter) params.append('bm', leadFilter)
 
             const res = await fetch(`/api/marketing/list-leads`)
             const data = await res.json()
@@ -150,16 +148,16 @@ export default function RdStation() {
     )
 }
 
-function MetricCard({ title, value, icon }: { title: string, value: string | number, icon: React.ReactNode }) {
-    return (
-        <div className="bg-card border p-6 rounded-xl shadow-sm">
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">{title}</p>
-            <div className="flex items-center justify-between">
-                <h3 className="text-4xl font-black">{value}</h3>
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                    {icon}
-                </div>
-            </div>
-        </div>
-    )
-}
+// function MetricCard({ title, value, icon }: { title: string, value: string | number, icon: React.ReactNode }) {
+//     return (
+//         <div className="bg-card border p-6 rounded-xl shadow-sm">
+//             <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">{title}</p>
+//             <div className="flex items-center justify-between">
+//                 <h3 className="text-4xl font-black">{value}</h3>
+//                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+//                     {icon}
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }

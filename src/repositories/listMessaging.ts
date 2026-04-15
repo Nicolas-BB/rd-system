@@ -11,10 +11,10 @@ export async function listMessaging(): Promise<{ combined: dbBusinessMessaging[]
 
     const businesses = businessesRes.rows as Business[]
     const groups = groupsRes.rows as FetchGroups[]
-    const messaging = messagingRes.rows
+    const messaging = messagingRes.rows as dbBusinessMessaging[]
 
     const combined = businesses.map((bm) => {
-        const config = messaging.find((m: any) => m.id === bm.id)
+        const config = messaging.find((m) => m.id === bm.id)
         return {
             id: bm.id,
             business: bm.name,

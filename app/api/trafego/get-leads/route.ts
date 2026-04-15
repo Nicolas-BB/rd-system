@@ -4,7 +4,7 @@ import { listMessaging } from "@/src/repositories/listMessaging";
 import { formatMetaLeadsMessage } from "@/src/services/formatMetaLeadsMessage";
 import { getAdAccounts } from "@/src/services/getAdAccounts";
 import { getDailyLeads } from "@/src/services/getDailyLeads";
-import { sendMessage } from "@/src/services/sendMessage";
+import { sendMessageEvolutionAPI } from "@/src/services/sendMessageEvolutionAPI";
 import { AdAccounts, BmLead } from "@/src/types/business";
 import { NextResponse } from "next/server";
 
@@ -35,7 +35,7 @@ export async function GET() {
         if (config) {
             const data = await formatMetaLeadsMessage(config, leadCount)
             if (data.success && data.data) {
-                await sendMessage(data.data)
+                await sendMessageEvolutionAPI(data.data.phone, data.data.message)
             }
         }
     }
