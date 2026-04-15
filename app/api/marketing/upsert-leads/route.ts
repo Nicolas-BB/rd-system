@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     upsertLead(data)
 
-    if (phone === '5543998077983' || phone === '5543996034144') {
+    if (phone === '5543998077983' || phone === '5543996511853') {
         await sendMessage(phone, 'Lead recebido!')
     }
 

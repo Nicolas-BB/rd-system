@@ -1,15 +1,17 @@
+// Rota que busca os leads da RD Station e envia uma mensagem para cada um
+
 import { listRdStationLeads } from "@/src/repositories/listRdStationLeads";
 import { getRdStationMessage } from "@/src/services/getRdStationMessage";
-import { sendMessage } from "@/src/services/sendMessage";
-import { DbLeadRes } from "@/src/types/rdStation";
 import { NextResponse } from "next/server"
 
 export async function GET(req: Request) {
-    const eventDate = new Date(2026, 5, 7)
+    const eventDate = new Date(2026, 3, 10)
     const today = new Date()
 
     const diff = eventDate.getTime() - today.getTime()
     const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
+
+    console.log(`Days = ${days}\nHours = ${today.getHours()}`)
 
     if (![7, 4, 1, 0, -1, -3, -4, -5].includes(days)) return NextResponse.json({ success: false, error: 'Não é o dia de envio' })
 
