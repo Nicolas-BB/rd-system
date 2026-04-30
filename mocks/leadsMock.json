@@ -1,27 +1,14 @@
 [
     {
-        "phone": "554398077983",
-        "name": "João Silva",
-        "created_at": "2026-04-29T10:15:30Z"
+        "phone": "5543998077983",
+        "name": "Nicolas",
+        "created_at": "2026-04-29T10:15:30Z",
+        "sent_at": ""
     },
     {
-        "phone": "554398664156",
-        "name": "Maria Oliveira",
-        "created_at": "2026-04-28T14:22:10Z"
-    },
-    {
-        "phone": "554396887361",
-        "name": "Carlos Souza",
-        "created_at": "2026-04-27T09:05:45Z"
-    },
-    {
-        "phone": "554399727041",
-        "name": "Ana Pereira",
-        "created_at": "2026-04-26T18:40:00Z"
-    },
-    {
-        "phone": "554396511853",
-        "name": "Lucas Santos",
-        "created_at": "2026-04-25T12:00:00Z"
+        "phone": "5543998664156",
+        "name": "Jobis",
+        "created_at": "2026-04-28T14:22:10Z",
+        "sent_at": ""
     }
 ]

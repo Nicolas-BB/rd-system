@@ -2,8 +2,9 @@ import { listRdStationLeads } from "@/src/repositories/listRdStationLeads";
 import { getRdStationMessage } from "@/src/services/getRdStationMessage";
 import { sendMessageCloudAPI } from "@/src/services/sendMessageCloudAPI";
 import { NextResponse } from "next/server"
-import leadsMock from '@/mocks/leadsMock.json'
 import pLimit from "p-limit";
+import { pool } from "@/src/lib/db";
+import leadsMock from '@/mocks/leadsMock.json'
 import { DbLeadRes } from "@/src/types/rdStation";
 
 export async function POST() {
@@ -43,15 +44,31 @@ export async function POST() {
     const limit = pLimit(5)
 
     await Promise.all(
-        leads.map((lead) => {
+        leads.map((lead) =>
             limit(async () => {
-                const result = await sendMessageCloudAPI(lead.phone, message)
+                try {
 
-                if (!result.success) {
-                    console.error(`Erro ao enviar mensagem para ${lead.phone}: ${result.error}`)
+                    const result = await sendMessageCloudAPI(lead.phone, message)
+
+                    if (!result.success) {
+                        console.error(`Erro ao enviar mensagem para ${lead.phone}: ${result.error}`)
+                        return
+                    }
+
+                    await pool.query(
+                        `
+                        UPDATE rdstation.leads
+                        SET sent_at = now()
+                        WHERE phone = $1
+                        `,
+                        [lead.phone]
+                    )
+                }
+                catch (err) {
+                    console.error(`Erro inesperado com ${lead.phone}:`, err)
                 }
             })
-        })
+        )
     )
 
     return NextResponse.json({ success: true })

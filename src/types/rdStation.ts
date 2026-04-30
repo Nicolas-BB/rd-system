@@ -6,7 +6,8 @@ export type LeadInfo = {
 export type DbLeadRes = {
   phone: string,
   name: string,
-  created_at: string
+  created_at: string,
+  sent_at: string
 }
 
 export type LeadsReq = {
