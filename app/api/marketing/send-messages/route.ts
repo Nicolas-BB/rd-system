@@ -39,7 +39,6 @@ export async function POST() {
         leads.map((lead) =>
             limit(async () => {
                 try {
-
                     const result = await sendMessageCloudAPI(lead.phone, message)
 
                     if (!result.success) {
